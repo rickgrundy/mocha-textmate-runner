@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>saveActiveFile</string>
+	<key>bundleUUID</key>
+	<string>094ACE33-0C0E-422A-B3F7-5B919F5B1239</string>
+	<key>command</key>
+	<string>#!/usr/bin/ruby
+
+def run_mocha(pattern=".*", reporter="dot")
+  puts `PATH="$PATH:/usr/local/bin" &amp;&amp; cd "$TM_PROJECT_DIRECTORY" &amp;&amp; mocha "$TM_FILEPATH" --reporter #{reporter} --grep "#{pattern}"`
+end
+	
+if ENV['TM_CURRENT_LINE'] =~ /(?:describe|it)\s*['"]([\w\s]+)['"]/
+  puts $1
+  run_mocha($1)
+else
+  run_mocha
+end</string>
+	<key>input</key>
+	<string>none</string>
+	<key>keyEquivalent</key>
+	<string>@R</string>
+	<key>name</key>
+	<string>Run Mocha</string>
+	<key>output</key>
+	<string>showAsTooltip</string>
+	<key>scope</key>
+	<string>source.coffee</string>
+	<key>uuid</key>
+	<string>B2E713BD-C60F-43E9-8BC6-C0A839A278B0</string>
+</dict>
+</plist>
