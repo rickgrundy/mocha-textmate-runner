@@ -13,7 +13,7 @@ def run_mocha(pattern=".*", reporter="dot")
   puts `PATH="$PATH:/usr/local/bin" &amp;&amp; cd "$TM_PROJECT_DIRECTORY" &amp;&amp; mocha "$TM_FILEPATH" --reporter #{reporter} --grep "#{pattern}"`
 end
 	
-if ENV['TM_CURRENT_LINE'] =~ /(?:describe|it)\s*['"]([\w\s]+)['"]/
+if ENV['TM_CURRENT_LINE'] =~ /(?:it|describe)\s*['"](.+)['"]/
   puts $1
   run_mocha($1)
 else
